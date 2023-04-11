@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    margin-top: 20vh;
+    font-size: 3vh;
+    background-attachment: fixed;
+}
+
+.form_container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_logo {
+    width: 100vw;
+}
+
+.puzzle_logo {
+    height: 30vh;
+}
+
+.form_input {
+    font-size: 3vh;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 55vw;
+    background-color: #a8a8a8;
+    height: 50px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form_label {
+    font-family: 'Roboto', sans-serif;
+    color: #FFFFFF;
+}
+
+.submit_btn {
+    width: 50vw;
+    border-radius: 30px;
+    margin-top: 3vh;
+    height: 10vh;
+    background-color: #9EFF71;
+    font-family: 'Texturina', serif;
+    margin-bottom: 5vh;
+}
+
+.close_btn {
+    font-size: 5vh;
+    color: #FFFFFF;
+    font-weight: 100;
+}

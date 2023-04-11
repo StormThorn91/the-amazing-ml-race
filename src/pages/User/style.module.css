@@ -1,0 +1,40 @@
+body {
+    background-color: #262424;
+}
+
+.container {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+.title {
+    font-family: 'Texturina', serif;
+    color: #DAA22B;
+    text-shadow: 0.5px 0.5px #FFFFFF;
+    -webkit-text-stroke: 0.5px black;
+    z-index: 1;
+}
+
+.logo {
+    margin-left: 2vh;
+}
+
+.nav_down {
+    position: absolute;
+    left: 50%;
+    bottom: 92vh;
+}
+
+.nav_up {
+    position: absolute;
+    left: 50%;
+    top: 98vh;
+}
+
+.t2 {
+    margin-bottom: 20px;
+}
