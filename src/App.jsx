@@ -77,7 +77,11 @@ function App() {
   return (
     <div className="App">
       {location.pathname === '/login' ? loader : null}
+    {
+      isLoading && location.pathname === '/login' ? null :
       <Outlet />
+    }
+      
     </div>
   );
 }
