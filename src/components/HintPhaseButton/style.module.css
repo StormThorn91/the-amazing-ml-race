@@ -9,7 +9,7 @@
     border-radius: 50%;
     text-align: center;
     cursor: pointer;
-    
+    margin-right: 5px;
 }
 
 .text {
@@ -22,4 +22,10 @@
 
 .blue {
     background-color: rgb(32, 37, 70);
+}
+
+.disabled {
+    background-color: rgb(143, 143, 143);
+    color: rgb(173, 172, 172);
+    cursor: not-allowed;
 }

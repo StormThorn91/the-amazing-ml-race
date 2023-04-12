@@ -4,6 +4,7 @@ import { QuestionLg, LockFill } from 'react-bootstrap-icons'
 
 export function NavigationButton({ buttonType }) {
     const navigate = useNavigate();
+    
     const handleClick = () => {
         if (buttonType === 'puzzle') {
             navigate("/puzzle")

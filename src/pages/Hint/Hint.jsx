@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { HintButton } from '../../components/HintButton/HintButton';
 import style from './style.module.css';
 
 export function Hint (props) {
