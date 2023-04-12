@@ -38,15 +38,14 @@ body {
     width: 5vh;
     background-color: transparent;
     color: aqua;
-    font-size: 2vh;
+    font-size: 3vh;
     border-radius: 50%;
-    border: 2px solid aqua;
-    text-align: center;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    align-items: center;
+    border: 2px solid aqua;    text-align: center;
 
+}
+
+.icon {
+    margin-top: 5px;
 }
 
 .t2 {

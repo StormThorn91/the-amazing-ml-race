@@ -79,7 +79,7 @@ export function User(props) {
             <NavigationButton buttonType={'puzzle'} />
             <NavigationButton buttonType={'hints'} />
             </div>
-            <button className={style.logout} onClick={handleLogout}><Power /></button>
+            <div className={style.logout} onClick={handleLogout}><Power className={style.icon}/></div>
         </div>
     )
 }

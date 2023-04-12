@@ -15,7 +15,7 @@ export function NavigationButton({ buttonType }) {
     }
     return (
         <div className={style.container}>
-            <button className={style.button} onClick={handleClick}>{buttonType === 'puzzle' ? <LockFill /> : <QuestionSquareFill />}</button>
+            <div className={style.button} onClick={handleClick}>{buttonType === 'puzzle' ? <LockFill className={style.icon}/> : <QuestionSquareFill className={style.icon} />}</div>
         </div>
     );
 }
