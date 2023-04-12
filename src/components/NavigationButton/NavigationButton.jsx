@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import style from './style.module.css';
-import { QuestionSquareFill, LockFill } from 'react-bootstrap-icons'
+import { QuestionLg, LockFill } from 'react-bootstrap-icons'
 
 export function NavigationButton({ buttonType }) {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ export function NavigationButton({ buttonType }) {
     }
     return (
         <div className={style.container}>
-            <div className={style.button} onClick={handleClick}>{buttonType === 'puzzle' ? <LockFill className={style.icon}/> : <QuestionSquareFill className={style.icon} />}</div>
+            <div className={style.button} onClick={handleClick}>{buttonType === 'puzzle' ? <LockFill className={style.icon}/> : <QuestionLg className={style.icon} />}</div>
         </div>
     );
 }

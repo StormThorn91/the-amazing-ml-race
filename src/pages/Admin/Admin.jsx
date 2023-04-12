@@ -104,7 +104,7 @@ export function Admin(props) {
                 <HintButton userType="admin" title="Enable Hint 2" adminType={role} />
                 <HintButton userType="admin" title="Enable Hint 3" adminType={role} />
             </div>
-            <button className={style.logout} onClick={handleLogout}><Power className={style.icon} /></button>
+            <div className={style.logout} onClick={handleLogout}><Power className={style.icon} /></div>
         </div>
     )
 }
