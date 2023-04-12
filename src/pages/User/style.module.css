@@ -42,7 +42,10 @@ body {
     border-radius: 50%;
     border: 2px solid aqua;
     text-align: center;
-    padding-right: 2vh;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
 
 }
 
