@@ -1,36 +1,26 @@
 .container {
-    background-color: #444444;
-    width: 15vw;
     display: flex;
     justify-content: center;
-    transform: translate(-50%, -50%);
-    border-radius: 0 0 150px 150px;
+
+}
+
+.button {
+    height: 10vh;
+    width: 10vh;
+    font-size: 5vh;
+    background-color: transparent;
+    border-radius: 50%;
+    margin-right: 5px;
+    color: #ededed;
 }
 
 .container_up    {
     background-color: #444444;
-    width: 15vw;
+    width: 1vw;
     display: flex;
     justify-content: center;
     transform: translate(-50%, -50%);
     border-radius: 150px 150px 0 0;
 
 
-}
-
-.arrow {
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-}
-
-.down {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-}
-
-.up {
-    transform: rotate(-135deg);
-    -webkit-transform: rotate(-135deg);
 }

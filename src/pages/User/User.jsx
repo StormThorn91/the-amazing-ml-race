@@ -6,6 +6,7 @@ import { auth, db } from '../../config/firebase';
 import { useNavigate } from 'react-router-dom';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import { Power } from 'react-bootstrap-icons'
 
 export function User(props) {
     const [towers, setTowers] = useState([]);
@@ -36,10 +37,10 @@ export function User(props) {
 
     useEffect(() => {
         getTowers();
-
     }, []);
 
     const navigate = useNavigate();
+
     const handleLogout = async () => {
         try {
             await signOut(auth);
@@ -72,17 +73,13 @@ export function User(props) {
         </svg>;
     return (
         <div className={style.container}>
-            <div className={style.nav_down} onClick={() => navigate("/puzzle")}>
-                <NavigationButton buttonType={'puzzle'} />
-            </div>
-            <div className={`${style.title} ${style.t1}`}>The Amazing</div>
             <img className={style.logo} src={mlLogo} alt="ML Logo" />
-            <div className={`${style.title} ${style.t2}`}>Race</div>
             {mobaMap}
-            <button style={{ marginTop: '10px' }} onClick={handleLogout}>Logout</button>
-            <div className={style.nav_up}>
-                <NavigationButton buttonType={'hints'} />
+            <div className={style.nav}>
+            <NavigationButton buttonType={'puzzle'} />
+            <NavigationButton buttonType={'hints'} />
             </div>
+            <button className={style.logout} onClick={handleLogout}><Power /></button>
         </div>
     )
 }

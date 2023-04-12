@@ -18,7 +18,7 @@ export function TowerButton({ adminType, title, towerIndex, towerClick }) {
     }
 
     return (
-        <div className={`${style.container} ${adminType === 'redAdmin' ? style.red : style.blue}`} onClick={handleClick}>
+        <div className={`${style.container} ${adminType === 'redAdmin' ? style.blue : style.red}`} onClick={handleClick}>
             <h3 className={style.buttonText}>{title}</h3>
         </div>
     )

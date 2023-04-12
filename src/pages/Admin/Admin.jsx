@@ -7,6 +7,7 @@ import { collection, doc, getDocs, onSnapshot, updateDoc } from 'firebase/firest
 import { useEffect, useState } from 'react';
 import { TowerButton } from '../../components/TowerButton/TowerButton';
 import { HintButton } from '../../components/HintButton/HintButton';
+import { Power } from 'react-bootstrap-icons'
 
 export function Admin(props) {
     var role = '';
@@ -92,18 +93,18 @@ export function Admin(props) {
                 </h1>
             </div>
             <div>
-                <TowerButton towerClick={handleClick} towerId={towers.id} tower={towers} towerIndex={0} adminType={role} title="Tower 1"/>
-                <TowerButton towerClick={handleClick} towerId={towers.id} tower={towers} towerIndex={1} adminType={role} title="Tower 2"/>
-                <TowerButton towerClick={handleClick} towerId={towers.id} tower={towers} towerIndex={2} adminType={role} title="Tower 3"/>
-                <TowerButton towerClick={handleClick} towerId={towers.id} tower={towers} towerIndex={3} adminType={role} title="Tower 4"/>
-                <TowerButton towerClick={handleClick} towerId={towers.id} tower={towers} towerIndex={4} adminType={role} title="Tower 5"/>
+                <TowerButton towerClick={handleClick} towerIndex={0} adminType={role} title="Tower 1"/>
+                <TowerButton towerClick={handleClick} towerIndex={1} adminType={role} title="Tower 2"/>
+                <TowerButton towerClick={handleClick} towerIndex={2} adminType={role} title="Tower 3"/>
+                <TowerButton towerClick={handleClick} towerIndex={3} adminType={role} title="Tower 4"/>
+                <TowerButton towerClick={handleClick} towerIndex={4} adminType={role} title="Tower 5"/>
             </div>
             <div className={style.hint_container}>
                 <HintButton userType="admin" title="Enable Hint 1" adminType={role}/>
                 <HintButton userType="admin" title="Enable Hint 2" adminType={role} />
                 <HintButton userType="admin" title="Enable Hint 3" adminType={role} />
             </div>
-            <button onClick={handleLogout}>Logout</button>
+            <button className={style.logout} onClick={handleLogout}><Power /></button>
         </div>
     )
 }

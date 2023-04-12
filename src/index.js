@@ -8,6 +8,7 @@ import { Admin } from './pages/Admin/Admin';
 import { Form } from './pages/Form/Form';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { Hint } from './pages/Hint/Hint';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,6 +21,7 @@ root.render(
         <Route path="/puzzle" element={<Form />} />
         <Route path="/game" element={<User />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/hints" element={<Hint />} />
       </Route>
     </Routes>
     </BrowserRouter>

@@ -26,3 +26,14 @@
 .title {
     color: white
 }
+
+.logout {
+    margin-top: 10px;
+    font-size: 2vh;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 2px solid aqua;
+    color: aqua;
+    width: 5vh;
+    height: 5vh;
+}

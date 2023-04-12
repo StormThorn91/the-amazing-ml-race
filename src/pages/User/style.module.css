@@ -21,18 +21,27 @@ body {
 
 .logo {
     margin-left: 2vh;
+    width: 70vw;
 }
 
-.nav_down {
-    position: absolute;
-    left: 50%;
-    bottom: 92vh;
+.nav {
+    margin-top: 5vh;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
-.nav_up {
-    position: absolute;
-    left: 50%;
-    top: 98vh;
+.logout {
+    margin-top: 15px;
+    margin-left: 1vh;
+    height: 5vh;
+    width: 5vh;
+    background-color: transparent;
+    color: aqua;
+    font-size: 2vh;
+    border-radius: 50%;
+    border: 2px solid aqua;
+
 }
 
 .t2 {
