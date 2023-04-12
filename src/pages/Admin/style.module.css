@@ -29,13 +29,13 @@
 
 .logout {
     margin-top: 10px;
-    font-size: 2vh;
-    background-color: transparent;
-    border-radius: 50%;
-    border: 2px solid aqua;
-    color: aqua;
-    width: 5vh;
     height: 5vh;
+    width: 5vh;
+    background-color: transparent;
+    color: aqua;
+    font-size: 3vh;
+    border-radius: 50%;
+    border: 2px solid aqua;    
     text-align: center;
 }
 
