@@ -80,7 +80,7 @@ export function Form(props) {
             </div>
             {
                 path === 'login' ? null :
-                    <div>
+                    <div onClick={() => navigate('/game')}>
                         <Close className={style.close_btn} />
                     </div>
             }

@@ -28,7 +28,7 @@ function App() {
   const checkAuth = async () => {
     const currentLoggedIn = auth.currentUser;
     if(currentLoggedIn === null) {
-       navigate('login');
+       navigate('/login');
     }
 
     else if(auth.currentUser.email !== null) {
@@ -76,7 +76,7 @@ function App() {
 
   return (
     <div className="App">
-      {loader}
+      {location.pathname === '/login' ? loader : null}
       <Outlet />
     </div>
   );

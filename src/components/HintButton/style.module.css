@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(79, 26, 26);
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    
+}
+
+.text {
+    font-size: 2vh;
+}
+
+.red {
+    background-color: rgb(79, 26, 26);
+}
+
+.blue {
+    background-color: rgb(32, 37, 70);
+}

@@ -1,0 +1,19 @@
+.container {
+    width: 25vh;
+    height: 10vh;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 3vh;
+}
+
+.red {
+    background-color: rgb(146, 41, 41);
+}
+
+.blue {
+    background-color: rgb(28, 40, 70);
+}
