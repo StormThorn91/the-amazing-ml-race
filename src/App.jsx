@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setRole, setUsers } from "./store/Users/users-slice";
 
 import style from './style.module.css'
+import { setUser } from "./store/Users/users-slice";
 
 function App() {
   const navigate = useNavigate();
@@ -37,6 +38,8 @@ function App() {
 
       usersList.map((user) => {
         if (user.userId === username && user.role === 'player') {
+          dispatch(setUser(username));
+          dispatch(setRole(user.role));
           navigate('/game');
       }
       if (user.userId === username && (user.role === 'redAdmin' | user.role === 'blueAdmin')) {
@@ -70,8 +73,6 @@ function App() {
   useEffect(() => {
     getUsers();
     checkAuth();
-    console.log(auth);
-    console.log(location.pathname);
   },[auth.currentUser]);
 
   return (

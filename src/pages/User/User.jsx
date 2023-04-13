@@ -7,12 +7,28 @@ import { useNavigate } from 'react-router-dom';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Power } from 'react-bootstrap-icons'
+import { useDispatch, useSelector } from 'react-redux';
+import { setTowers } from '../../store/Towers/tower-slice';
 
 export function User(props) {
-    const [towers, setTowers] = useState([]);
     const [redTowers, setRedTowers] = useState([]);
     const [blueTowers, setBlueTowers] = useState([]);
+    const user = useSelector((store) => store.usersSlice.user);
+    
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const towersCollectionRef = collection(db, 'towers');
+
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            console.log(auth);
+            navigate('/login')
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const getTowers = async () => {
         try {
@@ -25,8 +41,12 @@ export function User(props) {
                     });
                 })
 
-                console.log(towerList);
-                setTowers(towerList);
+                if(user === 'R3DT34M') {
+                    dispatch(setTowers(towerList[1].blueTowers));
+                }
+                else {
+                    dispatch(setTowers(towerList[0].redTowers));
+                }
                 setRedTowers(towerList[0].redTowers);
                 setBlueTowers(towerList[1].blueTowers);
             })
@@ -39,17 +59,6 @@ export function User(props) {
         getTowers();
     }, []);
 
-    const navigate = useNavigate();
-
-    const handleLogout = async () => {
-        try {
-            await signOut(auth);
-            console.log(auth);
-            navigate('/login')
-        } catch (err) {
-            console.log(err);
-        }
-    }
     const mobaMap =
         <svg width="357" height="312" viewBox="0 0 357 312" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <path d="M 32 141.500 C 32 201.725, 32.221 251, 32.492 251 C 32.762 251, 54.250 233.408, 80.242 211.906 C 163.783 142.797, 188.526 122.336, 239 80.629 C 266.225 58.132, 290.525 37.990, 293 35.869 L 297.500 32.013 164.750 32.006 L 32 32 32 141.500 M 221.500 146.031 C 164.850 192.868, 105.340 242.060, 89.255 255.345 L 60.011 279.500 192.168 279.754 C 264.855 279.893, 324.480 279.854, 324.667 279.666 C 324.855 279.478, 324.894 230.173, 324.754 170.098 L 324.500 60.872 221.500 146.031" stroke="none" fill="#548434" fillRule="evenodd" /><path d="M -0 156.003 L -0 312.005 178.750 311.753 L 357.500 311.500 357.753 155.750 L 358.006 0 179.003 0 L 0 0 -0 156.003 M 0.488 156.500 C 0.488 242.300, 0.606 277.252, 0.750 234.171 C 0.894 191.091, 0.894 120.891, 0.750 78.171 C 0.606 35.452, 0.488 70.700, 0.488 156.500 M 32 141.500 C 32 201.725, 32.221 251, 32.492 251 C 32.762 251, 54.250 233.408, 80.242 211.906 C 163.783 142.797, 188.526 122.336, 239 80.629 C 266.225 58.132, 290.525 37.990, 293 35.869 L 297.500 32.013 164.750 32.006 L 32 32 32 141.500 M 221.500 146.031 C 164.850 192.868, 105.340 242.060, 89.255 255.345 L 60.011 279.500 192.168 279.754 C 264.855 279.893, 324.480 279.854, 324.667 279.666 C 324.855 279.478, 324.894 230.173, 324.754 170.098 L 324.500 60.872 221.500 146.031" stroke="none" fill="#fbe39b" fillRule="evenodd" />
