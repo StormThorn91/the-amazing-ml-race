@@ -1,0 +1,20 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button_container {
+    margin-top: 15vh;
+}
+
+.close_container {
+    margin-top: 15vh;
+}
+
+.close_btn {
+    font-size: 5vh;
+    color: #FFFFFF;
+    font-weight: 100;
+}

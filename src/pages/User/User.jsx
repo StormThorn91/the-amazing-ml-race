@@ -13,12 +13,22 @@ import { setTowers } from '../../store/Towers/tower-slice';
 export function User(props) {
     const [redTowers, setRedTowers] = useState([]);
     const [blueTowers, setBlueTowers] = useState([]);
+    const [isEndGame, setEndGame] = useState(false);
+    const [winner, setWinner] = useState('');
+    const [gameStanding, setGameStanding] = useState('');
+    const [enablePuzzleButton, setEnablePuzzleButton] = useState(false);
     const user = useSelector((store) => store.usersSlice.user);
     
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const towersCollectionRef = collection(db, 'towers');
+
+    const endGame = (
+        <div className={isEndGame ? style.endgame_container : style.endgame_hide}>
+            <div className={style.endgame_text}>{gameStanding}</div>
+        </div>
+    )
 
     const handleLogout = async () => {
         try {
@@ -30,6 +40,21 @@ export function User(props) {
         }
     }
 
+    const towersChecker = (towers) => {
+        if (towers[0] === false && towers[1] === false && towers[2] === false && towers[3] === false  && towers[4] === false) {
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
+    const allTowersChecker = (towers) => {
+        return towers.every(tower => tower === false);
+    }
+
+
     const getTowers = async () => {
         try {
             onSnapshot(towersCollectionRef, (querySnapshot) => {
@@ -39,16 +64,24 @@ export function User(props) {
                         ...doc.data(),
                         id: doc.id,
                     });
-                })
+                });
+
+                setRedTowers(towerList[0].redTowers);
+                setBlueTowers(towerList[1].blueTowers);
 
                 if(user === 'R3DT34M') {
                     dispatch(setTowers(towerList[1].blueTowers));
+                    setEnablePuzzleButton(towersChecker(towerList[1].blueTowers));
+                    
+                    if(endGame) {
+                        setWinner('R3DT34M');
+                    }
                 }
                 else {
                     dispatch(setTowers(towerList[0].redTowers));
+                    setEnablePuzzleButton(towersChecker(towerList[0].redTowers));
                 }
-                setRedTowers(towerList[0].redTowers);
-                setBlueTowers(towerList[1].blueTowers);
+                
             })
         } catch (err) {
             console.log(err)
@@ -85,7 +118,7 @@ export function User(props) {
             <img className={style.logo} src={mlLogo} alt="ML Logo" />
             {mobaMap}
             <div className={style.nav}>
-            <NavigationButton buttonType={'puzzle'} />
+            <NavigationButton buttonType={'puzzle'} enabled={enablePuzzleButton}/>
             <NavigationButton buttonType={'hints'} />
             </div>
             <div className={style.logout} onClick={handleLogout}><Power className={style.icon}/></div>

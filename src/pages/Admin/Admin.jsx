@@ -105,7 +105,7 @@ export function Admin(props) {
         try {
             const hintPhaseDoc = doc(db, "hints", id);
             if(hintType === 'redAdmin') {
-                await updateDoc(hintPhaseDoc, {redHintsPhase: newHintsPhase })
+                await updateDoc(hintPhaseDoc, {redHintsPhase: newHintsPhase })           
             }
 
             else {

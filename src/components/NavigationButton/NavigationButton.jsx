@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import style from './style.module.css';
 import { QuestionLg, LockFill } from 'react-bootstrap-icons'
 
-export function NavigationButton({ buttonType }) {
+export function NavigationButton({ buttonType, enabled }) {
     const navigate = useNavigate();
     
     const handleClick = () => {
@@ -13,10 +13,12 @@ export function NavigationButton({ buttonType }) {
         else {
             navigate('/hints')
         }
+
+        console.log(enabled + " waah")
     }
     return (
         <div className={style.container}>
-            <div className={style.button} onClick={handleClick}>{buttonType === 'puzzle' ? <LockFill className={style.icon}/> : <QuestionLg className={style.icon} />}</div>
+            <div className={`${style.button} ${buttonType === 'puzzle' ? enabled ? null : style.button_disabled : null}`} onClick={buttonType === 'puzzle' ? enabled ? handleClick : null : handleClick}>{buttonType === 'puzzle' ? <LockFill className={style.icon}/> : <QuestionLg className={style.icon} />}</div>
         </div>
     );
 }

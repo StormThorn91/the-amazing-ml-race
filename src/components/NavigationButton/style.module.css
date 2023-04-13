@@ -16,6 +16,11 @@
     text-align: center;
 }
 
+.button_disabled {
+    border-color: #3a3a3a;
+    color: #3a3a3a;
+}
+
 .icon {
     margin-top: 2vh;
 }

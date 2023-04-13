@@ -6,7 +6,7 @@ import { setFormState } from '../../store/FormState/formstate-slice';
 import mlLogo from '../../assets/images/ML-Logo.png';
 import lockLogo from '../../assets/images/locked.png';
 import { X as Close } from 'react-bootstrap-icons'
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../config/firebase';
 import { setRole, setUser } from '../../store/Users/users-slice';
 import { collection, doc, getDocs, updateDoc } from 'firebase/firestore';
@@ -67,13 +67,13 @@ export function Form(props) {
             try {
                 const towerDoc = doc(db, "towers", id);
                 if (user === 'R3DT34M') {
-                    await updateDoc(towerDoc, { blueTowers: newTowers })
+                    await updateDoc(towerDoc, { blueTowers: newTowers });
                 }
 
                 else {
-                    await updateDoc(towerDoc, { redTowers: newTowers })
+                    await updateDoc(towerDoc, { redTowers: newTowers });
                 }
-                setButtonText('SUBMIT')
+                setButtonText('SUBMIT');
                 navigate('/game');
             } catch (err) {
                 console.log(err);
