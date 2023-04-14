@@ -73,13 +73,13 @@ body {
     font-size: 5vh;
     color: white;
     font-family: 'Texturina', serif;
-    text-shadow: #262424;
+    text-shadow: 3px 3px 2px #262424;
   }
 
-  .winner {
+  .victory {
     color: #FFD700
   }
 
   .defeat {
-    color: #691f1f;
+    color: #bb2424;
   }
