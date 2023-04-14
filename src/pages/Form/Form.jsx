@@ -25,6 +25,7 @@ export function Form(props) {
     const [userInput, setUserInput] = useState("");
     const [puzzleSolved, setPuzzleSolved] = useState("");
     const [id, setId] = useState('');
+    const [endGame, setEndGame] = useState(false);
     const [buttonText, setButtonText] = useState('SUBMIT');
 
     const puzzleAnswerCollectionRef = collection(db, 'finalanswer');
@@ -33,6 +34,15 @@ export function Form(props) {
     const userAndRoleSetter = (user, role) => {
         dispatch(setUser(user));
         dispatch(setRole(role));
+    }
+
+    const disableButton = () => {
+        if(endGame) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     const getEndGameStatus = async () => {
@@ -47,7 +57,11 @@ export function Form(props) {
                 });
 
                 if(endList[0].endGame === true) {
+                    setEndGame(true);
                     navigate('/game')
+                }
+                else {
+                    setEndGame(false);
                 }
             });
         } catch (err) {
@@ -148,7 +162,7 @@ export function Form(props) {
                     }
                 </label>
                 <input type="text" className={style.form_input} onChange={(e) => setUserInput(e.target.value)} />
-                <button className={style.submit_btn} onClick={path === 'login' ? handleLoginButton : handlePuzzleAnswer}>{buttonText}</button>
+                <button className={style.submit_btn} onClick={path === 'login' ? handleLoginButton : disableButton() ? null : handlePuzzleAnswer}>{buttonText}</button>
             </div>
             {
                 path === 'login' ? null :
