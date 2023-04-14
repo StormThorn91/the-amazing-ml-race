@@ -18,7 +18,6 @@ export function User(props) {
     const [redTowers, setRedTowers] = useState([]);
     const [blueTowers, setBlueTowers] = useState([]);
     const [isEndGame, setEndGame] = useState(false);
-    const [winner, setWinner] = useState('');
     const [gameStanding, setGameStanding] = useState('DEFEAT');
     const [enablePuzzleButton, setEnablePuzzleButton] = useState(false);
     const user = useSelector((store) => store.usersSlice.user);

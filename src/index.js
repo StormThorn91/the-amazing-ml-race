@@ -9,6 +9,7 @@ import { Form } from './pages/Form/Form';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import { Hint } from './pages/Hint/Hint';
+import { Reset } from './pages/Reset/Reset';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<App />}>
+        <Route path="/reset" element={<Reset />} />
         <Route path="/login" element={<Form />} />
         <Route path="/puzzle" element={<Form />} />
         <Route path="/game" element={<User />} />
