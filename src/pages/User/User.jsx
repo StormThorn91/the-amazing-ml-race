@@ -37,7 +37,6 @@ export function User(props) {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            console.log(auth);
             navigate('/login')
         } catch (err) {
             console.log(err);
@@ -68,7 +67,6 @@ export function User(props) {
                 }
     
                 else {
-                    console.log(user + ' You da real defeat');
                     setGameStanding('DEFEAT');
                 }
 
@@ -131,12 +129,10 @@ export function User(props) {
 
                 if(redEndGame || blueEndGame) {
                     if(redEndGame) {
-                        console.log('red? ' + redEndGame)
                         updateEndGame('R3DT34M', ENDGAMEID, true);
                     }
 
                     else {
-                        console.log('blue? ' + blueEndGame)
                         updateEndGame('BL00T34M', ENDGAMEID, true)
                     }
                     setEndGame(true)
@@ -145,7 +141,6 @@ export function User(props) {
                 else {
                     updateEndGame(user, ENDGAMEID, false);
                 }
-                console.log("END? " + isEndGame);
                 
             })
         } catch (err) {

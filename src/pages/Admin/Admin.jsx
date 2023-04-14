@@ -120,7 +120,6 @@ export function Admin(props) {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            console.log(towers);
             navigate('/login');
         } catch (err) {
             console.log(err);

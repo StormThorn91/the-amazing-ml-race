@@ -57,8 +57,6 @@ export function Hint(props) {
                     dispatch(setHints(hintsFetched[1].blueHints));
                     setHintPhase(hintsFetched[1].blueHintsPhase)
                 }
-                console.log(hints);
-                console.log(hintsPhase);
             });
         }
         catch (err) {

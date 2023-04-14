@@ -13,8 +13,6 @@ export function NavigationButton({ buttonType, enabled }) {
         else {
             navigate('/hints')
         }
-
-        console.log(enabled + " waah")
     }
     return (
         <div className={style.container}>
