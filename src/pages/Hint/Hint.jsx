@@ -17,6 +17,27 @@ export function Hint(props) {
     const [hintsPhase, setHintPhase] = useState([]);
 
     const hintsCollectionRef = collection(db, 'hints');
+    const endGameCollectionsRef = collection(db, 'gameover');
+
+    const getEndGameStatus = async () => {
+        try {
+            onSnapshot(endGameCollectionsRef, (querySnapshot) => {
+                const endList = [];
+                querySnapshot.forEach((doc) => {
+                    endList.push({
+                        ...doc.data(),
+                        id: doc.id,
+                    });
+                });
+
+                if(endList[0].endGame === true) {
+                    navigate('/game')
+                }
+            });
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     const getHints = () => {
         try {
@@ -47,6 +68,7 @@ export function Hint(props) {
 
     useEffect(() => {
         getHints();
+        getEndGameStatus();
     }, [])
 
     return (

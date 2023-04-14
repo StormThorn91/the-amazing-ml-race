@@ -9,7 +9,7 @@ import { X as Close } from 'react-bootstrap-icons'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../config/firebase';
 import { setRole, setUser } from '../../store/Users/users-slice';
-import { collection, doc, getDocs, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, onSnapshot, updateDoc } from 'firebase/firestore';
 import { setTowers } from '../../store/Towers/tower-slice';
 
 export function Form(props) {
@@ -28,10 +28,31 @@ export function Form(props) {
     const [buttonText, setButtonText] = useState('SUBMIT');
 
     const puzzleAnswerCollectionRef = collection(db, 'finalanswer');
+    const endGameCollectionsRef = collection(db, 'gameover');
 
     const userAndRoleSetter = (user, role) => {
         dispatch(setUser(user));
         dispatch(setRole(role));
+    }
+
+    const getEndGameStatus = async () => {
+        try {
+            onSnapshot(endGameCollectionsRef, (querySnapshot) => {
+                const endList = [];
+                querySnapshot.forEach((doc) => {
+                    endList.push({
+                        ...doc.data(),
+                        id: doc.id,
+                    });
+                });
+
+                if(endList[0].endGame === true) {
+                    navigate('/game')
+                }
+            });
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     const getFinalAnswer = async () => {
@@ -112,6 +133,7 @@ export function Form(props) {
             getFinalAnswer();
             setButtonText('SUBMIT');
             dispatch(setFormState('puzzle'));
+            getEndGameStatus();
         }
     }, [])
     return (

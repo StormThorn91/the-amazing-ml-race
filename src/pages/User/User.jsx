@@ -4,18 +4,22 @@ import { NavigationButton } from '../../components/NavigationButton/NavigationBu
 import { signOut } from 'firebase/auth';
 import { auth, db } from '../../config/firebase';
 import { useNavigate } from 'react-router-dom';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, doc, onSnapshot, updateDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Power } from 'react-bootstrap-icons'
 import { useDispatch, useSelector } from 'react-redux';
 import { setTowers } from '../../store/Towers/tower-slice';
 
 export function User(props) {
+    var redEndGame = false;
+    var blueEndGame = false;
+    const ENDGAMEID = '2wwVq0fjumkoMKUu9afq';
+
     const [redTowers, setRedTowers] = useState([]);
     const [blueTowers, setBlueTowers] = useState([]);
     const [isEndGame, setEndGame] = useState(false);
     const [winner, setWinner] = useState('');
-    const [gameStanding, setGameStanding] = useState('');
+    const [gameStanding, setGameStanding] = useState('DEFEAT');
     const [enablePuzzleButton, setEnablePuzzleButton] = useState(false);
     const user = useSelector((store) => store.usersSlice.user);
     
@@ -23,6 +27,7 @@ export function User(props) {
     const navigate = useNavigate();
 
     const towersCollectionRef = collection(db, 'towers');
+    const endGameCollectionsRef = collection(db, 'gameover');
 
     const endGame = (
         <div className={isEndGame ? style.endgame_container : style.endgame_hide}>
@@ -36,6 +41,50 @@ export function User(props) {
             console.log(auth);
             navigate('/login')
         } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const getEndGameStatus = async () => {
+        try {
+            onSnapshot(endGameCollectionsRef, (querySnapshot) => {
+                const endList = [];
+                querySnapshot.forEach((doc) => {
+                    endList.push({
+                        ...doc.data(),
+                        id: doc.id,
+                    });
+                });
+
+                if(endList[0].endGame === true) {
+                    setEndGame(true);
+                }
+
+                else {
+                    setEndGame(false);
+                }
+
+                if(endList[0].winner === user) {
+                    setGameStanding('VICTORY');
+                }
+    
+                else {
+                    console.log(user + ' You da real defeat');
+                    setGameStanding('DEFEAT');
+                }
+
+            });
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    const updateEndGame = async (gameWinner, id, status) => {
+        try {
+            const stats = doc(db, 'gameover', id);
+            await updateDoc(stats, {endGame: status, winner: gameWinner});
+            getEndGameStatus();
+        } catch(err) {
             console.log(err);
         }
     }
@@ -72,15 +121,32 @@ export function User(props) {
                 if(user === 'R3DT34M') {
                     dispatch(setTowers(towerList[1].blueTowers));
                     setEnablePuzzleButton(towersChecker(towerList[1].blueTowers));
-                    
-                    if(endGame) {
-                        setWinner('R3DT34M');
-                    }
                 }
                 else {
                     dispatch(setTowers(towerList[0].redTowers));
                     setEnablePuzzleButton(towersChecker(towerList[0].redTowers));
                 }
+
+                redEndGame = allTowersChecker(towerList[1].blueTowers);
+                blueEndGame = allTowersChecker(towerList[0].redTowers);
+
+                if(redEndGame || blueEndGame) {
+                    if(redEndGame) {
+                        console.log('red? ' + redEndGame)
+                        updateEndGame('R3DT34M', ENDGAMEID, true);
+                    }
+
+                    else {
+                        console.log('blue? ' + blueEndGame)
+                        updateEndGame('BL00T34M', ENDGAMEID, true)
+                    }
+                    setEndGame(true)
+                }
+
+                else {
+                    updateEndGame(user, ENDGAMEID, false);
+                }
+                console.log("END? " + isEndGame);
                 
             })
         } catch (err) {
@@ -89,6 +155,7 @@ export function User(props) {
     }
 
     useEffect(() => {
+        getEndGameStatus();
         getTowers();
     }, []);
 
@@ -115,6 +182,7 @@ export function User(props) {
         </svg>;
     return (
         <div className={style.container}>
+            {isEndGame? endGame : null}
             <img className={style.logo} src={mlLogo} alt="ML Logo" />
             {mobaMap}
             <div className={style.nav}>
