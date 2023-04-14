@@ -72,4 +72,14 @@ body {
     margin-top: 40vh;
     font-size: 5vh;
     color: white;
+    font-family: 'Texturina', serif;
+    text-shadow: #262424;
+  }
+
+  .winner {
+    color: #FFD700
+  }
+
+  .defeat {
+    color: #691f1f;
   }

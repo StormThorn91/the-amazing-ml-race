@@ -30,7 +30,7 @@ export function User(props) {
 
     const endGame = (
         <div className={isEndGame ? style.endgame_container : style.endgame_hide}>
-            <div className={style.endgame_text}>{gameStanding}</div>
+            <div className={`${style.endgame_text} ${gameStanding === 'VICTORY' ? style.victory : style.defeat}`}>{gameStanding}</div>
         </div>
     )
 
